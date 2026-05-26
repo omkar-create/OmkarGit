@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 334.19574583757628,
+            "y": 281.33664784425952
+          },
+          "nodeIndex": "V_OTIF",
+          "nodeLineageTag": "3878230c-99ab-4b77-bea1-a87d1477757c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 202.0160765361091
+          },
+          "nodeIndex": "V_SPEND_ANALYTICS",
+          "nodeLineageTag": "c3cdf698-2626-472d-a824-bd61d9e975a5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 618.3341190806409,
+            "y": -50
+          },
+          "nodeIndex": "V_TAIL_SPEND",
+          "nodeLineageTag": "fe687302-e92d-471a-8cf2-10f09a974fd1",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 439.69571650466912,
+            "y": 631.53798084413756
+          },
+          "nodeIndex": "V_VENDOR_SCORECARD",
+          "nodeLineageTag": "21576297-9413-427d-a374-6d2b27cb9f9a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 953.63133499586161,
+            "y": 657.25318161176074
+          },
+          "nodeIndex": "Measure",
+          "nodeLineageTag": "0a11ba8d-3ace-451f-bbcd-04ca3e3c8c82",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 781.78038800483137,
+            "y": 355.01703186375556
+          },
+          "nodeIndex": "DateTable",
+          "nodeLineageTag": "731132ce-1994-432a-9bd9-23b535acbc55",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 44.905697313103978,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

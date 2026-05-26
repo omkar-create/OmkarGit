@@ -1,0 +1,71 @@
+table DateTable
+	lineageTag: 731132ce-1994-432a-9bd9-23b535acbc55
+
+	column Date
+		formatString: Long Date
+		lineageTag: 20f30cd4-ff88-437e-b817-52328cc52cc0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		formatString: 0
+		lineageTag: 313d4339-ed94-4106-b43a-7cc5162ec986
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Num'
+		formatString: 0
+		lineageTag: ffe58745-15ac-4da0-92fa-2b0025614512
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Month Num]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		lineageTag: 1238ba3f-6df2-4aba-a3ab-500706a29d08
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: a8a586f7-2afc-434b-af8a-b39a9d3ecd31
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: dbc81223-7b17-41f3-a122-84d60aee8f7a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DateTable = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				    CALENDARAUTO(),
+				    "Year",       YEAR ( [Date] ),
+				    "Month Num",  MONTH ( [Date] ),
+				    "Month Name", FORMAT ( [Date], "MMM" ),
+				    "Quarter",    "Q" & QUARTER ( [Date] ),
+				    "YearMonth",  FORMAT ( [Date], "YYYY-MM" )
+				)
+
+	annotation PBI_Id = af5318f9e797496f80f201cb894a3a64
+

@@ -1,0 +1,131 @@
+table V_SPEND_ANALYTICS
+	lineageTag: c3cdf698-2626-472d-a824-bd61d9e975a5
+
+	column PO_NUMBER
+		dataType: string
+		lineageTag: 1c933617-99c0-47b6-9565-b7b05831b5d2
+		summarizeBy: none
+		sourceColumn: PO_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column PO_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4a43f5ed-f4a7-4809-af83-2cb8f7c00fed
+		summarizeBy: none
+		sourceColumn: PO_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FISCAL_YEAR
+		dataType: double
+		lineageTag: da46e647-0c35-49e3-9aac-2be4eee544c7
+		summarizeBy: sum
+		sourceColumn: FISCAL_YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MONTH_NAME
+		dataType: string
+		lineageTag: 35e25da4-22c4-46f2-b820-2b8fcf77b552
+		summarizeBy: none
+		sourceColumn: MONTH_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column MONTH_NUM
+		dataType: double
+		lineageTag: 8ff27b78-be61-4326-a9d7-876acf897737
+		summarizeBy: sum
+		sourceColumn: MONTH_NUM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CATEGORY
+		dataType: string
+		lineageTag: ef0ec9fb-4b23-4f56-ab2d-90d3eb40ac45
+		summarizeBy: none
+		sourceColumn: CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: string
+		lineageTag: 01ffa23f-60ca-40db-be18-aa256ed88056
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column AMOUNT_EUR
+		dataType: double
+		lineageTag: 0add6f11-0805-47d1-8d14-758a148ee58f
+		summarizeBy: sum
+		sourceColumn: AMOUNT_EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VENDOR_NAME
+		dataType: string
+		lineageTag: ca5dd989-e715-4c8c-a281-0e04427c6639
+		summarizeBy: none
+		sourceColumn: VENDOR_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDOR_COUNTRY
+		dataType: string
+		lineageTag: 2120b561-ada2-41e0-a51f-02d45d9df828
+		summarizeBy: none
+		sourceColumn: VENDOR_COUNTRY
+
+		annotation SummarizationSetBy = Automatic
+
+	column PREFERRED_STATUS
+		dataType: string
+		lineageTag: 86026d2d-06c5-4cee-a8c7-dfcf3588b60f
+		summarizeBy: none
+		sourceColumn: PREFERRED_STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTRACT_STATUS
+		dataType: string
+		lineageTag: 4330508d-ab1e-46a7-b903-168a4c6e435f
+		summarizeBy: none
+		sourceColumn: CONTRACT_STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SPEND_TIER
+		dataType: string
+		lineageTag: 2e0304f3-ed1c-4be6-b60f-258a9d08872f
+		summarizeBy: none
+		sourceColumn: SPEND_TIER
+
+		annotation SummarizationSetBy = Automatic
+
+	partition V_SPEND_ANALYTICS = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("shydwgi-mq32223.snowflakecomputing.com","COMPUTE_WH",[Implementation="1.0"]),
+				    STADA_PRACTICE_Database = Source{[Name="STADA_PRACTICE",Kind="Database"]}[Data],
+				    PROCUREMENT_Schema = STADA_PRACTICE_Database{[Name="PROCUREMENT",Kind="Schema"]}[Data],
+				    V_SPEND_ANALYTICS_View = PROCUREMENT_Schema{[Name="V_SPEND_ANALYTICS",Kind="View"]}[Data]
+				in
+				    V_SPEND_ANALYTICS_View
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

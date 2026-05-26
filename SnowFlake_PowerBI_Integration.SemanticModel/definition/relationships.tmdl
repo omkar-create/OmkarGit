@@ -1,0 +1,24 @@
+relationship AutoDetected_34d3ffc8-ab2b-4871-adff-61baeba24887
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: V_OTIF.PO_NUMBER
+	toColumn: V_SPEND_ANALYTICS.PO_NUMBER
+
+relationship AutoDetected_2b838778-1b3f-4cee-9fda-69f8282340c5
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: V_TAIL_SPEND.VENDOR_NAME
+	toColumn: V_OTIF.VENDOR_NAME
+
+relationship AutoDetected_2b0c36e3-7835-4b45-b023-adf9479f70e6
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: V_VENDOR_SCORECARD.VENDOR_NAME
+	toColumn: V_OTIF.VENDOR_NAME
+
+relationship 93248fa4-5d46-e34a-ff24-e5b0600bc1aa
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: V_SPEND_ANALYTICS.PO_DATE
+	toColumn: DateTable.Date
+

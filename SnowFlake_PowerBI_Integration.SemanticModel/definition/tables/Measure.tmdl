@@ -1,0 +1,192 @@
+table Measure
+	lineageTag: 0a11ba8d-3ace-451f-bbcd-04ca3e3c8c82
+
+	measure 'Total Spend' =
+			
+			SUM ( V_SPEND_ANALYTICS[AMOUNT_EUR] )
+		lineageTag: c0612d60-e1eb-4d37-a290-c4815e90485b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PO Count' =
+			
+			COUNTROWS ( V_SPEND_ANALYTICS )
+		formatString: 0
+		lineageTag: cd47824e-8e08-4190-b5a2-d43391aaf8a6
+
+	measure 'Avg PO Value' =
+			
+			DIVIDE (
+			    SUM ( V_SPEND_ANALYTICS[AMOUNT_EUR] ),
+			    COUNTROWS ( V_SPEND_ANALYTICS )
+			)
+		lineageTag: b25428cf-fcc6-4b8e-b66b-085417216c70
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'On-Contract Spend %' =
+			
+			DIVIDE (
+			    CALCULATE (
+			        SUM ( V_SPEND_ANALYTICS[AMOUNT_EUR] ),
+			        V_SPEND_ANALYTICS[CONTRACT_STATUS] = "On-Contract"
+			    ),
+			    SUM ( V_SPEND_ANALYTICS[AMOUNT_EUR] )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4018bbea-2d24-49fc-bd50-43721b508cb7
+
+	measure 'Tail Spend %' =
+			
+			DIVIDE (
+			    CALCULATE (
+			        SUM ( V_SPEND_ANALYTICS[AMOUNT_EUR] ),
+			        V_SPEND_ANALYTICS[SPEND_TIER] = "Tail"
+			    ),
+			    SUM ( V_SPEND_ANALYTICS[AMOUNT_EUR] )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5e11b1d6-69bc-4851-a5cf-d37187981592
+
+	measure 'Spend LY' =
+			
+			CALCULATE (
+			    [Total Spend],
+			    SAMEPERIODLASTYEAR ( DateTable[Date] )
+			)
+		lineageTag: 9182fd18-6d98-4ecb-bd14-bfc2d1cee965
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Spend YoY %' =
+			
+			DIVIDE (
+			    [Total Spend] - [Spend LY],
+			    [Spend LY]
+			)
+		lineageTag: 866073df-9d92-41a4-afbe-a7c2b273430c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Spend MTD' =
+			
+			CALCULATE (
+			    [Total Spend],
+			    DATESMTD ( DateTable[Date] )
+			)
+		lineageTag: 62b446c6-9f73-40e6-a762-b088ae12e5e7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Spend YTD' =
+			
+			CALCULATE (
+			    [Total Spend],
+			    DATESYTD ( DateTable[Date] )
+			)
+		lineageTag: 385082a6-61d9-4600-aa62-58c5e1139990
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Preferred Supplier Spend %' =
+			
+			DIVIDE (
+			    CALCULATE (
+			        SUM ( V_SPEND_ANALYTICS[AMOUNT_EUR] ),
+			        V_SPEND_ANALYTICS[PREFERRED_STATUS] = "Preferred"
+			    ),
+			    [Total Spend]
+			)
+		lineageTag: d3fbfbc3-c765-4a78-b9f2-e6596e49ccd9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg On-Time Delivery %' =
+			
+			DIVIDE (
+			    SUMX (
+			        V_VENDOR_SCORECARD,
+			        V_VENDOR_SCORECARD[ON_TIME_COUNT]
+			    ),
+			    SUMX (
+			        V_VENDOR_SCORECARD,
+			        V_VENDOR_SCORECARD[DELIVERED_COUNT]
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 54a854dd-3dcf-4ac1-abb6-9f3ed4e086af
+
+	measure 'Vendors Green' =
+			
+			CALCULATE (
+			    COUNTROWS ( V_VENDOR_SCORECARD ),
+			    V_VENDOR_SCORECARD[DELIVERY_RAG] = "Green"
+			)
+		formatString: 0
+		lineageTag: cb39a2e1-d53d-4845-a645-9d5503051dee
+
+	measure 'Vendors Amber' =
+			
+			CALCULATE (
+			    COUNTROWS ( V_VENDOR_SCORECARD ),
+			    V_VENDOR_SCORECARD[DELIVERY_RAG] = "Amber"
+			)
+		formatString: 0
+		lineageTag: 242fb860-b23e-4c0d-b37e-ee2fc7539623
+
+	measure 'Vendors Red' =
+			
+			CALCULATE (
+			    COUNTROWS ( V_VENDOR_SCORECARD ),
+			    V_VENDOR_SCORECARD[DELIVERY_RAG] = "Red"
+			)
+		formatString: 0
+		lineageTag: 9af7fbdf-96bb-409f-aa3c-87dcc7fa55cb
+
+	measure 'OTIF %' =
+			
+			DIVIDE (
+			    CALCULATE (
+			        COUNTROWS ( V_OTIF ),
+			        V_OTIF[OTIF_FLAG] = 1
+			    ),
+			    COUNTROWS ( V_OTIF )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1200fd8f-e958-454d-985e-233be0da8554
+
+	measure 'Avg Delay Days' =
+			
+			CALCULATE (
+			    AVERAGE ( V_OTIF[DAYS_VARIANCE] ),
+			    V_OTIF[DAYS_VARIANCE] > 0
+			)
+		lineageTag: c03519dd-3056-40bf-80e7-6de8627ef2aa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Late Delivery Count' =
+			
+			CALCULATE (
+			    COUNTROWS ( V_OTIF ),
+			    V_OTIF[ON_TIME_FLAG] = 0
+			)
+		formatString: 0
+		lineageTag: 7b18cbeb-870e-4ef7-9a2f-00a0e5748d06
+
+	measure Test = 1
+		formatString: 0
+		lineageTag: 7b2500a5-57e6-4b94-b5e5-2300933e0519
+
+	partition Measure = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

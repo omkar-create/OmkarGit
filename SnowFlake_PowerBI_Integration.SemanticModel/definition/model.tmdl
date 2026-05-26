@@ -1,0 +1,23 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["V_OTIF","V_SPEND_ANALYTICS","V_TAIL_SPEND","V_VENDOR_SCORECARD","Measure"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table V_OTIF
+ref table V_SPEND_ANALYTICS
+ref table V_TAIL_SPEND
+ref table V_VENDOR_SCORECARD
+ref table Measure
+ref table DateTable
+
+ref cultureInfo en-US
+

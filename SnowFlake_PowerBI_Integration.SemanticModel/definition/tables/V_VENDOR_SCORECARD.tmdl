@@ -1,0 +1,146 @@
+table V_VENDOR_SCORECARD
+	lineageTag: 21576297-9413-427d-a374-6d2b27cb9f9a
+
+	column VENDOR_ID
+		dataType: string
+		lineageTag: 23d516ba-dfca-4709-8e1c-54603dc1ee0e
+		summarizeBy: none
+		sourceColumn: VENDOR_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDOR_NAME
+		dataType: string
+		lineageTag: d633d535-8e94-4f3b-b118-bb760621a61c
+		summarizeBy: none
+		sourceColumn: VENDOR_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column COUNTRY
+		dataType: string
+		lineageTag: 9cf58a4b-da22-40c3-bbaa-5c944539bddb
+		summarizeBy: none
+		sourceColumn: COUNTRY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORY
+		dataType: string
+		lineageTag: c628dceb-b279-4e03-baed-5f8637e679e8
+		summarizeBy: none
+		sourceColumn: CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column PREFERRED_STATUS
+		dataType: string
+		lineageTag: 713a74d8-3ece-4fde-a072-6e2319920b04
+		summarizeBy: none
+		sourceColumn: PREFERRED_STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column PAYMENT_TERMS
+		dataType: double
+		lineageTag: 20465c96-b7e0-4dbc-9a26-f93be6debd72
+		summarizeBy: sum
+		sourceColumn: PAYMENT_TERMS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_PO_COUNT
+		dataType: double
+		lineageTag: b3dd8617-43c7-42e5-aa2f-c1725f5c37e1
+		summarizeBy: sum
+		sourceColumn: TOTAL_PO_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_SPEND_EUR
+		dataType: double
+		lineageTag: eace96f3-407f-4273-bc83-b0afb1d50e15
+		summarizeBy: sum
+		sourceColumn: TOTAL_SPEND_EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_PO_VALUE
+		dataType: double
+		lineageTag: 4df7c4d4-5396-48fe-be5b-d5fff243b694
+		summarizeBy: sum
+		sourceColumn: AVG_PO_VALUE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DELIVERED_COUNT
+		dataType: double
+		lineageTag: 57a63738-5847-4cec-b13e-3c10bd5b25c6
+		summarizeBy: sum
+		sourceColumn: DELIVERED_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ON_TIME_COUNT
+		dataType: double
+		lineageTag: 7a528453-d97b-49bc-97d5-5aef288105ec
+		summarizeBy: sum
+		sourceColumn: ON_TIME_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ON_TIME_PCT
+		dataType: double
+		lineageTag: 4fd9221b-ec7c-40de-97c3-7deca6321522
+		summarizeBy: sum
+		sourceColumn: ON_TIME_PCT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_DELAY_DAYS
+		dataType: double
+		lineageTag: 4462b31d-935d-4662-b859-31714ac1dcc5
+		summarizeBy: sum
+		sourceColumn: AVG_DELAY_DAYS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DELIVERY_RAG
+		dataType: string
+		lineageTag: 95f3edc5-dd9b-482f-a9e7-f744fdebe6f4
+		summarizeBy: none
+		sourceColumn: DELIVERY_RAG
+
+		annotation SummarizationSetBy = Automatic
+
+	partition V_VENDOR_SCORECARD = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("shydwgi-mq32223.snowflakecomputing.com","COMPUTE_WH",[Implementation="1.0"]),
+				    STADA_PRACTICE_Database = Source{[Name="STADA_PRACTICE",Kind="Database"]}[Data],
+				    PROCUREMENT_Schema = STADA_PRACTICE_Database{[Name="PROCUREMENT",Kind="Schema"]}[Data],
+				    V_VENDOR_SCORECARD_View = PROCUREMENT_Schema{[Name="V_VENDOR_SCORECARD",Kind="View"]}[Data]
+				in
+				    V_VENDOR_SCORECARD_View
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

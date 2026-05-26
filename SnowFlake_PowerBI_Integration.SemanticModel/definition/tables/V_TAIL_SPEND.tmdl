@@ -1,0 +1,98 @@
+table V_TAIL_SPEND
+	lineageTag: fe687302-e92d-471a-8cf2-10f09a974fd1
+
+	column VENDOR_NAME
+		dataType: string
+		lineageTag: a0bbc730-011e-4456-bc8f-4e9446291688
+		summarizeBy: none
+		sourceColumn: VENDOR_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORY
+		dataType: string
+		lineageTag: 4b7456d8-ad6f-4170-a986-8155f578f0c5
+		summarizeBy: none
+		sourceColumn: CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column PREFERRED_STATUS
+		dataType: string
+		lineageTag: 3055a73b-5155-45c3-bd7a-e5e285a7cefe
+		summarizeBy: none
+		sourceColumn: PREFERRED_STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDOR_TOTAL_SPEND
+		dataType: double
+		lineageTag: a1885fee-c405-4494-9300-0ca8a10885b3
+		summarizeBy: sum
+		sourceColumn: VENDOR_TOTAL_SPEND
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VENDOR_PO_COUNT
+		dataType: double
+		lineageTag: cb4d6ff8-1ad8-41c3-9654-b127e87eb242
+		summarizeBy: sum
+		sourceColumn: VENDOR_PO_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SPEND_SHARE_PCT
+		dataType: double
+		lineageTag: ea9a47f8-3d9f-42e7-8228-acf64d2c2a42
+		summarizeBy: sum
+		sourceColumn: SPEND_SHARE_PCT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GRAND_TOTAL
+		dataType: double
+		lineageTag: c80dc1ca-aeca-476b-8c27-a9aa3e3053fd
+		summarizeBy: sum
+		sourceColumn: GRAND_TOTAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUPPLIER_TIER
+		dataType: string
+		lineageTag: 87d9d6d9-4315-4e17-a6b7-837fc87540cb
+		summarizeBy: none
+		sourceColumn: SUPPLIER_TIER
+
+		annotation SummarizationSetBy = Automatic
+
+	column RECOMMENDATION
+		dataType: string
+		lineageTag: cf0c16a2-e00c-4d09-b28b-4fd43f746482
+		summarizeBy: none
+		sourceColumn: RECOMMENDATION
+
+		annotation SummarizationSetBy = Automatic
+
+	partition V_TAIL_SPEND = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("shydwgi-mq32223.snowflakecomputing.com","COMPUTE_WH",[Implementation="1.0"]),
+				    STADA_PRACTICE_Database = Source{[Name="STADA_PRACTICE",Kind="Database"]}[Data],
+				    PROCUREMENT_Schema = STADA_PRACTICE_Database{[Name="PROCUREMENT",Kind="Schema"]}[Data],
+				    V_TAIL_SPEND_View = PROCUREMENT_Schema{[Name="V_TAIL_SPEND",Kind="View"]}[Data]
+				in
+				    V_TAIL_SPEND_View
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

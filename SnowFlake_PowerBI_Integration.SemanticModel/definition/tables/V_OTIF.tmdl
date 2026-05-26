@@ -1,0 +1,153 @@
+table V_OTIF
+	lineageTag: 3878230c-99ab-4b77-bea1-a87d1477757c
+
+	column PO_NUMBER
+		dataType: string
+		lineageTag: aa88e9cb-3814-45bf-9b68-b2f01d2120a5
+		summarizeBy: none
+		sourceColumn: PO_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column PO_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fc0aee98-281d-4aa9-99a7-4388b7eafd47
+		summarizeBy: none
+		sourceColumn: PO_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column YEAR
+		dataType: double
+		lineageTag: c3663285-af81-465f-aeb9-e10dec583a80
+		summarizeBy: sum
+		sourceColumn: YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MONTH_NUM
+		dataType: double
+		lineageTag: d8b76000-64ae-41a9-a97f-bf5aebd41b56
+		summarizeBy: sum
+		sourceColumn: MONTH_NUM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MONTH_NAME
+		dataType: string
+		lineageTag: e7060ab5-a2b5-45c6-8973-28ce7fad1ffd
+		summarizeBy: none
+		sourceColumn: MONTH_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDOR_NAME
+		dataType: string
+		lineageTag: ab00f99d-7d9b-4cc9-bd3f-94a00f2fa6e9
+		summarizeBy: none
+		sourceColumn: VENDOR_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORY
+		dataType: string
+		lineageTag: b000377f-8d44-4377-8a5e-a1a2a85500ca
+		summarizeBy: none
+		sourceColumn: CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column PLANNED_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: cec0b6f4-fcbd-41af-8f5a-016ddc98a0e4
+		summarizeBy: none
+		sourceColumn: PLANNED_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ACTUAL_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 28064195-08bd-47c9-a95a-a4df27bb2717
+		summarizeBy: none
+		sourceColumn: ACTUAL_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column AMOUNT_EUR
+		dataType: double
+		lineageTag: c1cef7cf-e52c-49d3-a82b-3fdca7eb59a0
+		summarizeBy: sum
+		sourceColumn: AMOUNT_EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DAYS_VARIANCE
+		dataType: double
+		lineageTag: e7dd4f85-7e2d-440d-9ce9-dc4543cc2fe1
+		summarizeBy: sum
+		sourceColumn: DAYS_VARIANCE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ON_TIME_FLAG
+		dataType: double
+		lineageTag: 3d9527c6-754e-41f8-9693-7b3bd5907449
+		summarizeBy: sum
+		sourceColumn: ON_TIME_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IN_FULL_FLAG
+		dataType: double
+		lineageTag: 3dc57e87-6ac9-4e8d-ae99-6fb70c854623
+		summarizeBy: sum
+		sourceColumn: IN_FULL_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OTIF_FLAG
+		dataType: double
+		lineageTag: e766e9cc-8fb0-4c2f-b14d-4d6c150b1965
+		summarizeBy: sum
+		sourceColumn: OTIF_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition V_OTIF = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("shydwgi-mq32223.snowflakecomputing.com","COMPUTE_WH",[Implementation="1.0"]),
+				    STADA_PRACTICE_Database = Source{[Name="STADA_PRACTICE",Kind="Database"]}[Data],
+				    PROCUREMENT_Schema = STADA_PRACTICE_Database{[Name="PROCUREMENT",Kind="Schema"]}[Data],
+				    V_OTIF_View = PROCUREMENT_Schema{[Name="V_OTIF",Kind="View"]}[Data]
+				in
+				    V_OTIF_View
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
