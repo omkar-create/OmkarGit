@@ -186,6 +186,10 @@ table Measure
 		formatString: 0
 		lineageTag: e5302b4b-6674-4b10-93ac-e7e531d5ae6d
 
+	measure 123 = COUNTROWS(V_OTIF)
+		formatString: 0
+		lineageTag: bb405b8a-dcc6-4a3a-ae7b-20877758e763
+
 	partition Measure = m
 		mode: import
 		source =
