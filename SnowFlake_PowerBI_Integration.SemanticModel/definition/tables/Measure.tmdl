@@ -182,6 +182,14 @@ table Measure
 		formatString: 0
 		lineageTag: 4baac10e-eb75-41ad-9d01-9719be38dd77
 
+	measure V_Spend_Analytics = COUNTROWS(V_SPEND_ANALYTICS)
+		formatString: 0
+		lineageTag: e5302b4b-6674-4b10-93ac-e7e531d5ae6d
+
+	measure 123 = COUNTROWS(V_OTIF)
+		formatString: 0
+		lineageTag: bb405b8a-dcc6-4a3a-ae7b-20877758e763
+
 	partition Measure = m
 		mode: import
 		source =
