@@ -1,0 +1,151 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "cc0b56b9154fa8e41c57",
+  "position": {
+    "x": 9.7592657959759972,
+    "y": 0,
+    "z": 0,
+    "height": 1080.8386869043418,
+    "width": 1910.3762795623015,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "V_SPEND_ANALYTICS"
+                        }
+                      },
+                      "Property": "AMOUNT_EUR"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(V_SPEND_ANALYTICS.AMOUNT_EUR)",
+              "nativeQueryRef": "Sum of AMOUNT_EUR"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_SPEND_ANALYTICS"
+                    }
+                  },
+                  "Property": "CATEGORY"
+                }
+              },
+              "queryRef": "V_SPEND_ANALYTICS.CATEGORY",
+              "nativeQueryRef": "CATEGORY"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_SPEND_ANALYTICS"
+                    }
+                  },
+                  "Property": "CONTRACT_STATUS"
+                }
+              },
+              "queryRef": "V_SPEND_ANALYTICS.CONTRACT_STATUS",
+              "nativeQueryRef": "CONTRACT_STATUS"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "V_SPEND_ANALYTICS"
+                        }
+                      },
+                      "Property": "FISCAL_YEAR"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(V_SPEND_ANALYTICS.FISCAL_YEAR)",
+              "nativeQueryRef": "Sum of FISCAL_YEAR"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_SPEND_ANALYTICS"
+                    }
+                  },
+                  "Property": "MONTH_NAME"
+                }
+              },
+              "queryRef": "V_SPEND_ANALYTICS.MONTH_NAME",
+              "nativeQueryRef": "MONTH_NAME"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "V_SPEND_ANALYTICS"
+                        }
+                      },
+                      "Property": "MONTH_NUM"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(V_SPEND_ANALYTICS.MONTH_NUM)",
+              "nativeQueryRef": "Sum of MONTH_NUM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_SPEND_ANALYTICS"
+                    }
+                  },
+                  "Property": "PO_DATE"
+                }
+              },
+              "queryRef": "V_SPEND_ANALYTICS.PO_DATE",
+              "nativeQueryRef": "PO_DATE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_SPEND_ANALYTICS"
+                    }
+                  },
+                  "Property": "PO_NUMBER"
+                }
+              },
+              "queryRef": "V_SPEND_ANALYTICS.PO_NUMBER",
+              "nativeQueryRef": "PO_NUMBER"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
