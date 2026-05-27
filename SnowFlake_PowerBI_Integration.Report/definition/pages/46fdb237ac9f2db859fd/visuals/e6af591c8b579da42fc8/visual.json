@@ -1,0 +1,51 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "e6af591c8b579da42fc8",
+  "position": {
+    "x": 0,
+    "y": 870.175785386516,
+    "z": 1,
+    "height": 209.82421461348395,
+    "width": 458.68549241087186,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "textSlicer",
+    "objects": {
+      "slicerSettings": [
+        {
+          "properties": {
+            "numericInputOnly": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

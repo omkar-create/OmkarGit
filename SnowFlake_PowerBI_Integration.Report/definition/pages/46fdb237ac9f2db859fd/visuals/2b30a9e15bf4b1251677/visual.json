@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "2b30a9e15bf4b1251677",
+  "position": {
+    "x": 9.113924050632912,
+    "y": 0,
+    "z": 0,
+    "height": 859.746835443038,
+    "width": 692.65822784810132,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DateTable"
+                    }
+                  },
+                  "Property": "Month Num"
+                }
+              },
+              "queryRef": "Sum(DateTable.Month Num)",
+              "nativeQueryRef": "Month Num"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "V_SPEND_ANALYTICS"
+                        }
+                      },
+                      "Property": "AMOUNT_EUR"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(V_SPEND_ANALYTICS.AMOUNT_EUR)",
+              "nativeQueryRef": "Sum of AMOUNT_EUR"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
